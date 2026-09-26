@@ -1235,3 +1235,207 @@ a {
     grid-template-columns: 1fr;
   }
 }
+/* =========================================
+   MANAGER TICKET - SLA / ASSIGNMENT
+   ========================================= */
+
+.sla-info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.sla-info > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sla-info span,
+.assignment-section > span,
+.pending-action > span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sla-info strong {
+  font-size: 14px;
+  color: #1e293b;
+}
+
+/* SLA STATUS */
+
+.sla-within {
+  color: #15803d !important;
+}
+
+.sla-breached {
+  color: #dc2626 !important;
+}
+
+/* ASSIGNMENT */
+
+.assignment-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 15px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.assignment-section select,
+.pending-action select {
+  min-width: 220px;
+  padding: 10px 38px 10px 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #fff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.assignment-section select:hover,
+.pending-action select:hover {
+  border-color: #6366f1;
+}
+
+.assignment-section select:focus,
+.pending-action select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* PENDING ACTION */
+
+.pending-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 15px 16px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+}
+
+.pending-action select {
+  min-width: 240px;
+}
+
+/* MANAGER ACTIONS IMPROVEMENT */
+
+.manager-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.manager-actions > span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.manager-actions > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.manager-actions button {
+  padding: 9px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.manager-actions button:hover {
+  transform: translateY(-1px);
+  border-color: #6366f1;
+  color: #4f46e5;
+  background: #eef2ff;
+}
+
+.manager-actions button.active {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+}
+
+/* MANAGER TICKET CARD */
+
+.manager-ticket-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.manager-ticket-card:hover {
+  transform: translateY(-2px);
+}
+
+/* SLA BREACH CARD */
+
+.manager-ticket-card:has(.sla-breached) {
+  border-left: 4px solid #ef4444;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .sla-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .sla-info {
+    grid-template-columns: 1fr;
+  }
+
+  .assignment-section,
+  .pending-action {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .assignment-section select,
+  .pending-action select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .manager-actions > div {
+    flex-direction: column;
+  }
+
+  .manager-actions button {
+    width: 100%;
+  }
+}

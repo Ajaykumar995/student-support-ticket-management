@@ -126,8 +126,36 @@ const login = async (req, res) => {
     });
   }
 };
+// GET STAFF USERS
+const getStaff = async (req, res) => {
+  try {
+    const User = require("../models/User");
+
+    const staff = await User.find({
+      role: "STAFF",
+    }).select(
+      "name email department"
+    );
+
+    res.status(200).json({
+      success: true,
+      staff,
+    });
+  } catch (error) {
+    console.error(
+      "Get staff error:",
+      error
+    );
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
 
 module.exports = {
   register,
   login,
+  getStaff,
 };

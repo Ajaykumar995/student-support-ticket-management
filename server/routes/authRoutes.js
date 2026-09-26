@@ -3,14 +3,25 @@ const express = require("express");
 const {
   register,
   login,
+  getStaff,
 } = require("../controllers/authControllers");
+
+const {
+  protect,
+  authorize,
+} = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// Register
 router.post("/register", register);
 
-// Login
 router.post("/login", login);
+
+router.get(
+  "/staff",
+  protect,
+  authorize("MANAGER"),
+  getStaff
+);
 
 module.exports = router;

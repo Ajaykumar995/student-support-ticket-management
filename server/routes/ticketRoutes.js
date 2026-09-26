@@ -6,6 +6,8 @@ const {
   getAllTickets,
   getTicketById,
   updateTicketStatus,
+  assignTicket,
+  updatePendingAction,
   deleteTicket,
 } = require("../controllers/ticketController");
 
@@ -36,11 +38,32 @@ router.get(
 router.get(
   "/all",
   protect,
-  authorize(
-    "STAFF",
-    "MANAGER"
-  ),
+  authorize("STAFF", "MANAGER"),
   getAllTickets
+);
+
+// MANAGER - ASSIGN TICKET
+router.put(
+  "/:id/assign",
+  protect,
+  authorize("MANAGER"),
+  assignTicket
+);
+
+// STAFF / MANAGER - UPDATE PENDING ACTION
+router.put(
+  "/:id/pending-action",
+  protect,
+  authorize("STAFF", "MANAGER"),
+  updatePendingAction
+);
+
+// STAFF / MANAGER - UPDATE STATUS
+router.put(
+  "/:id/status",
+  protect,
+  authorize("STAFF", "MANAGER"),
+  updateTicketStatus
 );
 
 // AUTHENTICATED USER - GET SINGLE TICKET
@@ -48,17 +71,6 @@ router.get(
   "/:id",
   protect,
   getTicketById
-);
-
-// STAFF / MANAGER - UPDATE STATUS
-router.put(
-  "/:id/status",
-  protect,
-  authorize(
-    "STAFF",
-    "MANAGER"
-  ),
-  updateTicketStatus
 );
 
 // MANAGER - DELETE TICKET
